@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authin.Api.Sdk", "Authin.Api.Sdk\Authin.Api.Sdk.csproj", "{6982A1D1-9D98-4455-864E-1759EC8D5D32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6982A1D1-9D98-4455-864E-1759EC8D5D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6982A1D1-9D98-4455-864E-1759EC8D5D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6982A1D1-9D98-4455-864E-1759EC8D5D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6982A1D1-9D98-4455-864E-1759EC8D5D32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
