@@ -3,7 +3,7 @@
 
 <h2 dir="rtl">راهنمای نصب Authin.Api.Sdk در NET.</h2>
 
-**<p dir="rtl">1. ابتدا کتابخانه <code>Authin.Api.Sdk.dll</code> را به رفرنس‌های پروژه خود اضفه کنید.</p>**
+**<p dir="rtl">1. ابتدا کتابخانه <code>Authin.Api.Sdk.dll</code> که در آدرس <a href="https://github.com/authiniam/authin-net/tree/master/Authin.Api.Sdk/ReleaseFiles">Authin.Api.Sdk/ReleaseFiles/</a> وجود دارد را به رفرنس‌های پروژه خود اضافه کنید.</p>**
 
 **<p dir="rtl">2. <code>NuGet pacakge</code>های زیر را بر روی پروژه مقصد نصب کنید:</p>**
 
@@ -37,7 +37,7 @@ var authorizationResult = await authorizationRequest.Execute();	(9)
 <ol dir="rtl">
 	<li>آدرس سامانه احراز هویت مثال:  <code>https://demo.authin.ir</code></li>
 	<li><code>client_id</code> سامانه شما در سامانه احراز هویت (این پارامتر را از ما دریافت می‌کنید)</li>
-	<li><code>redirect_uri</code>ای که در تنظیمات سامانه شما در سامانه احراز هویت ثبت شده است. بعد از اتمام فرآیند احراز هویت، کاربر به همراه یک کد که اصطلاحا <code>authorization code</code> نام دارد به آدرس مذکور هدایت می‌شود. برای اطلاعات بیشتر به <a href="https://www.oauth.com/oauth2-servers/redirect-uris/">Redirect URIs</a> رجوع کنید. به طور مثال اگر <code>redirect_uri</code> شما برابر با <code>htt://my.domain.com/Account/ExternalLoginCallback</code> باشد، کاربر به آدرس <code>htt://my.domain.com/Account/ExternalLoginCallback?code=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code> هدایت می‌شود. پارامتر <code>code</code> برای مرحله بعد لازم است..</li>
+	<li><code>redirect_uri</code>ای که در تنظیمات سامانه شما در سامانه احراز هویت ثبت شده است. بعد از اتمام فرآیند احراز هویت، کاربر به همراه یک کد که اصطلاحا <code>authorization code</code> نام دارد به آدرس مذکور هدایت می‌شود. برای اطلاعات بیشتر به <a href="https://www.oauth.com/oauth2-servers/redirect-uris/">Redirect URIs</a> رجوع کنید. به طور مثال اگر <code>redirect_uri</code> شما برابر با <code>htt://my.domain.com/Account/ExternalLoginCallback</code> باشد، کاربر به آدرس <code>htt://my.domain.com/Account/ExternalLoginCallback?code=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code> هدایت می‌شود. پارامتر <code>code</code> برای مرحله بعد لازم است.</li>
 	<li>طبق پروتکل، نوع جوابی که خواهان دریافت آن هستیم را معین می‌کند که در این مرحله <code>"code"</code> می‌باشد.</li>
 	<li>لیست دسترسی‌هایی که می‌خواهید بر روی توکن کاربر نوشته شود را تعیین می‌کنید.
 		<ul>
