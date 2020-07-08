@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Authin.Core.Api.Model;
+using Authin.Api.Sdk.Model;
 using Newtonsoft.Json;
 
-namespace Authin.Core.Api.Request
+namespace Authin.Api.Sdk.Request
 {
     public class RefreshTokenRequest : IExecutable<TokenResponse>
     {
@@ -14,6 +14,7 @@ namespace Authin.Core.Api.Request
         {
         }
 
+        public string BaseUrl { get; private set; }
         public string AccessToken { get; private set; }
         public string GrantType { get; private set; }
         public string RefreshToken { get; private set; }
@@ -28,12 +29,19 @@ namespace Authin.Core.Api.Request
 
         public class Builder
         {
+            private string _baseUrl;
             private string _grantType;
             private string _accessToken;
             private string _refreshToken;
             private List<string> _scopes;
             private string _clientId;
             private string _clientSecret;
+
+            public Builder SetBaseUrl(string baseUrl)
+            {
+                _baseUrl = baseUrl;
+                return this;
+            }
 
             public Builder SetAccessToken(string accessToken)
             {
@@ -73,6 +81,10 @@ namespace Authin.Core.Api.Request
 
             public RefreshTokenRequest Build()
             {
+                _baseUrl = _baseUrl ?? System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+                if (string.IsNullOrEmpty(_baseUrl))
+                    throw new ArgumentException("BaseUrl is a required field");
+
                 if (string.IsNullOrEmpty(_accessToken))
                     throw new ArgumentException("AccessToken is a required field");
 
@@ -93,6 +105,7 @@ namespace Authin.Core.Api.Request
 
                 return new RefreshTokenRequest
                 {
+                    BaseUrl = _baseUrl,
                     AccessToken = _accessToken,
                     GrantType = _grantType,
                     RefreshToken = _refreshToken,
@@ -105,8 +118,7 @@ namespace Authin.Core.Api.Request
 
         public async Task<TokenResponse> Execute()
         {
-            var baseUrl = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
-            var tokenEndpoint = baseUrl + "/api/v1/oauth/token";
+            var tokenEndpoint = new Uri(new Uri(BaseUrl), "/api/v1/oauth/token");
             var httpClient = new HttpClient();
 
             var tokenRequestBody = new List<KeyValuePair<string, string>>

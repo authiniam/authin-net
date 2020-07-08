@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Authin.Core.Api.Model
+namespace Authin.Api.Sdk.Model
 {
     public class Jwks
     {

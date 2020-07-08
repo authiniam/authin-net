@@ -1,12 +1,15 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Authin.Core.Api.Model;
+using Authin.Api.Sdk.Model;
 using Newtonsoft.Json;
 
-namespace Authin.Core.Api.Request
+namespace Authin.Api.Sdk.Request
 {
     public class JwksRequest : IExecutable<Jwks>
     {
+        public string BaseUrl { get; private set; }
+
         private JwksRequest()
         {
         }
@@ -18,16 +21,30 @@ namespace Authin.Core.Api.Request
 
         public class Builder
         {
+            private string _baseUrl;
+
+            public Builder SetBaseUrl(string baseUrl)
+            {
+                _baseUrl = baseUrl;
+                return this;
+            }
+
             public JwksRequest Build()
             {
-                return new JwksRequest();
+                _baseUrl = _baseUrl ?? System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+                if (string.IsNullOrEmpty(_baseUrl))
+                    throw new ArgumentException("BaseUrl is a required field");
+
+                return new JwksRequest
+                {
+                    BaseUrl = _baseUrl
+                };
             }
         }
 
         public async Task<Jwks> Execute()
         {
-            var baseUrl = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
-            var keysEndpoint = baseUrl + "/api/v1/keys";
+            var keysEndpoint = new Uri(new Uri(BaseUrl), "/api/v1/keys");
             var httpClient = new HttpClient();
             var keysResponse = await httpClient.GetAsync(keysEndpoint);
             keysResponse.EnsureSuccessStatusCode();

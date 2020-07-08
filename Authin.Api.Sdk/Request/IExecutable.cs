@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿    using System.Threading.Tasks;
 
-namespace Authin.Core.Api.Request
+namespace Authin.Api.Sdk.Request
 {
     interface IExecutable<T>
     {

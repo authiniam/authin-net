@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Authin.Core.Api.Model;
+using Authin.Api.Sdk.Model;
 using Newtonsoft.Json;
 
-namespace Authin.Core.Api.Request
+namespace Authin.Api.Sdk.Request
 {
     public class TokenRequest : IExecutable<TokenResponse>
     {
@@ -14,6 +14,7 @@ namespace Authin.Core.Api.Request
         {
         }
 
+        public string BaseUrl { get; private set; }
         public string Code { get; protected set; }
         public string RedirectUri { get; private set; }
         public string ClientId { get; private set; }
@@ -27,11 +28,18 @@ namespace Authin.Core.Api.Request
 
         public class Builder
         {
+            private string _baseUrl;
             private string _code;
             private string _redirectUri;
             private string _clientId;
             private string _clientSecret;
             private string _grantType;
+
+            public Builder SetBaseUrl(string baseUrl)
+            {
+                _baseUrl = baseUrl;
+                return this;
+            }
 
             public Builder SetCode(string code)
             {
@@ -64,7 +72,11 @@ namespace Authin.Core.Api.Request
 
             public TokenRequest Build()
             {
-                if(string.IsNullOrEmpty(_code))
+                _baseUrl = _baseUrl ?? System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+                if (string.IsNullOrEmpty(_baseUrl))
+                    throw new ArgumentException("BaseUrl is a required field");
+
+                if (string.IsNullOrEmpty(_code))
                     throw new ArgumentException("Code is a required field");
 
                 if (string.IsNullOrEmpty(_redirectUri))
@@ -81,6 +93,7 @@ namespace Authin.Core.Api.Request
 
                 return new TokenRequest
                 {
+                    BaseUrl = _baseUrl,
                     Code = _code,
                     RedirectUri = _redirectUri,
                     ClientId = _clientId,
@@ -92,8 +105,7 @@ namespace Authin.Core.Api.Request
 
         public async Task<TokenResponse> Execute()
         {
-            var baseUrl = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
-            var tokenEndpoint = baseUrl + "/api/v1/oauth/token";
+            var tokenEndpoint = new Uri(new Uri(BaseUrl), "/api/v1/oauth/token");
             var httpClient = new HttpClient();
 
             var tokenRequestBody = new List<KeyValuePair<string, string>>

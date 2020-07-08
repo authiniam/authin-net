@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Authin.Core.Api.Request
+namespace Authin.Api.Sdk.Request
+
 {
     public class AuthorizationCodeRequest : IExecutable<Uri>
     {
@@ -11,6 +12,7 @@ namespace Authin.Core.Api.Request
         {
         }
 
+        public string BaseUrl { get; private set; }
         public string ClientId { get; private set; }
         public string ResponseType { get; protected set; }
         public string RedirectUri { get; private set; }
@@ -25,6 +27,7 @@ namespace Authin.Core.Api.Request
 
         public class Builder
         {
+            private string _baseUrl;
             private string _clientId;
             private string _responseType;
             private string _redirectUri;
@@ -32,6 +35,12 @@ namespace Authin.Core.Api.Request
             private string _state;
             private readonly IList<string> _userInfoClaims = new List<string>();
             private readonly IList<string> _idTokenClaims = new List<string>();
+
+            public Builder SetBaseUrl(string baseUrl)
+            {
+                _baseUrl = baseUrl;
+                return this;
+            }
 
             public Builder SetClientId(string clientId)
             {
@@ -89,6 +98,10 @@ namespace Authin.Core.Api.Request
 
             public AuthorizationCodeRequest Build()
             {
+                _baseUrl = _baseUrl ?? System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+                if (string.IsNullOrEmpty(_baseUrl))
+                    throw new ArgumentException("BaseUrl is a required field");
+
                 if (string.IsNullOrEmpty(_clientId))
                     throw new ArgumentException("ClientId is a required field");
 
@@ -112,6 +125,7 @@ namespace Authin.Core.Api.Request
 
                 return new AuthorizationCodeRequest
                 {
+                    BaseUrl = _baseUrl,
                     ClientId = _clientId,
                     RedirectUri = _redirectUri,
                     ResponseType = _responseType,
@@ -124,8 +138,7 @@ namespace Authin.Core.Api.Request
 
         public async Task<Uri> Execute()
         {
-            var baseUrl = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
-            var authorizationEndpoint = baseUrl + "/openidauthorize";
+            var authorizationEndpoint = new Uri(new Uri(BaseUrl), "/openidauthorize").ToString();
 
             var scope = string.Join(" ", Scopes);
             var authorizationEndpointRedirectUri =
