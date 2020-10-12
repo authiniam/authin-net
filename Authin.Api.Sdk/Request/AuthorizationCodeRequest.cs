@@ -156,7 +156,7 @@ namespace Authin.Api.Sdk.Request
 
         public class ClaimsModel
         {
-            [JsonProperty("user_info")] public Dictionary<string, string> UserInfo { get; set; }
+            [JsonProperty("userinfo")] public Dictionary<string, string> UserInfo { get; set; }
             [JsonProperty("id_token")] public Dictionary<string, string> IdToken { get; set; }
         }
     }
