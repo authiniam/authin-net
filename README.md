@@ -105,7 +105,7 @@ var decodedJwt = TokenValidator.Validate(
 	<li><code>access_token</code> دریافتی در مرحله ۲</li>
 	<li>کلید عمومی دریافتی در مرحله ۱ از مراحل صحت سنجی</li>
 	<li>صادر کننده توکن مثال <code>https://www.authin.ir</code></li>
-	<li>شناسه گیرنده توکن (کسی که توکن برای او صادر شده)</li>
+	<li>شناسه سامانه‌ای که توکن برای آن صادر شده (<code>client_id</code>)</li>
 </ol>
 	
 <ul dir="rtl">
