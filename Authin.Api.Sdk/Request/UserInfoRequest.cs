@@ -91,6 +91,33 @@ namespace Authin.Api.Sdk.Request
             var response = await userinfoResponse.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<UserInfoResponse>(response);
         }
+
+        public UserInfoResponse ExecuteSync()
+        {
+            var userinfoEndpoint = new Uri(new Uri(BaseUrl), "/api/v1/oauth/userinfo");
+            var httpClient = new HttpClient();
+            var userinfoRequest = new HttpRequestMessage();
+
+            switch (Method)
+            {
+                case Method.Get:
+                    userinfoRequest.Method = HttpMethod.Get;
+                    break;
+                case Method.Post:
+                    userinfoRequest.Method = HttpMethod.Post;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            userinfoRequest.RequestUri = userinfoEndpoint;
+            userinfoRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            userinfoRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+            var userinfoResponse = httpClient.SendAsync(userinfoRequest).Result;
+            userinfoResponse.EnsureSuccessStatusCode();
+            var response = userinfoResponse.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<UserInfoResponse>(response);
+        }
     }
 
     public enum Method

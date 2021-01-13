@@ -139,6 +139,30 @@ namespace Authin.Api.Sdk.Request
             var response = await tokenResponse.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TokenResponse>(response);
         }
+
+        public TokenResponse ExecuteSync()
+        {
+            var tokenEndpoint = new Uri(new Uri(BaseUrl), "/api/v1/oauth/token");
+            var httpClient = new HttpClient();
+
+            var tokenRequestBody = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("grant_type", GrantType),
+                new KeyValuePair<string, string>("refresh_token", RefreshToken),
+                new KeyValuePair<string, string>("scope", string.Join(" ", Scopes)),
+                new KeyValuePair<string, string>("client_id", ClientId),
+                new KeyValuePair<string, string>("client_secret", ClientSecret),
+            };
+
+            var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
+            tokenRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            tokenRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+            tokenRequest.Content = new FormUrlEncodedContent(tokenRequestBody);
+            var tokenResponse = httpClient.SendAsync(tokenRequest).Result;
+            tokenResponse.EnsureSuccessStatusCode();
+            var response = tokenResponse.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<TokenResponse>(response);
+        }
     }
 
 

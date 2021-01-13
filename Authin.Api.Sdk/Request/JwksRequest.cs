@@ -51,5 +51,15 @@ namespace Authin.Api.Sdk.Request
             var response = await keysResponse.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Jwks>(response);
         }
+
+        public Jwks ExecuteSync()
+        {
+            var keysEndpoint = new Uri(new Uri(BaseUrl), "/api/v1/keys");
+            var httpClient = new HttpClient();
+            var keysResponse = httpClient.GetAsync(keysEndpoint).Result;
+            keysResponse.EnsureSuccessStatusCode();
+            var response = keysResponse.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<Jwks>(response);
+        }
     }
 }

@@ -154,6 +154,11 @@ namespace Authin.Api.Sdk.Request
 
         }
 
+        public Uri ExecuteSync()
+        {
+            return Execute().Result;
+        }
+
         public class ClaimsModel
         {
             [JsonProperty("userinfo")] public Dictionary<string, string> UserInfo { get; set; }
