@@ -125,7 +125,7 @@ var refreshTokenRequest = RefreshTokenRequest.GetBuilder()
 	.SetClientId("YOUR_CLIENT_ID")
 	.SetClientSecret("YOUR_CLIENT_SECRET")
 	.SetAccessToken(tokenResult.AccessToken)	(1)
-	.SetGrantType("refresh_token")				(2)
+	.SetGrantType("refresh_token")			(2)
 	.SetRefreshToken(tokenResult.RefreshToken)	(3)
 	.Build();
 
