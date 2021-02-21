@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Authin.Api.Sdk</id>
+    <version>1.2.0</version>
+    <title>Authin Api SDK</title>
+    <authors>Mohammad H. Mazinani</authors>
+    <owners>Authin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/authiniam/authin-net/</projectUrl>
+    <description>Authin Client SDK for .NET</description>
+    <releaseNotes>Add support for CIBA flow.</releaseNotes>
+    <copyright>Authin</copyright>
+    <tags>Authin Authentication IAM Identity Access OpenId OAuth</tags>
+    <repository type="git" url="https://github.com/authiniam/authin-net"/>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5" />
+    </dependencies>
+  </metadata>
+</package>
