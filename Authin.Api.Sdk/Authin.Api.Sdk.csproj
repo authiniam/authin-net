@@ -62,11 +62,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\CodeVerifier.cs" />
     <Compile Include="Model\Ciba\CibaSuccessfulResponse.cs" />
     <Compile Include="Model\Ciba\CibaResponse.cs" />
     <Compile Include="Model\Ciba\CibaFailedResponse.cs" />
     <Compile Include="Model\Jwk.cs" />
     <Compile Include="Model\Jwks.cs" />
+    <Compile Include="Request\Pkce\PkceAuthorizationCodeRequest.cs" />
     <Compile Include="Model\RsaJwk.cs" />
     <Compile Include="Model\TokenResponse.cs" />
     <Compile Include="Model\UserInfoResponse.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Request\Ciba\CibaTokenRequest.cs" />
     <Compile Include="Request\IExecutable.cs" />
     <Compile Include="Request\JwksRequest.cs" />
+    <Compile Include="Request\Pkce\PkceTokenRequest.cs" />
     <Compile Include="Request\RefreshTokenRequest.cs" />
     <Compile Include="Request\TokenRequest.cs" />
     <Compile Include="Request\UserInfoRequest.cs" />
@@ -84,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Pkce\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
