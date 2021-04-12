@@ -3,14 +3,12 @@
 
 <h2 dir="rtl">راهنمای نصب Authin.Api.Sdk در NET.</h2>
 
-**<p dir="rtl">1. ابتدا کتابخانه <code>Authin.Api.Sdk.dll</code> که در <a href="https://github.com/authiniam/authin-net/releases">releases</a> وجود دارد را به رفرنس‌های پروژه خود اضافه کنید.</p>**
+**<p dir="rtl">پکیج  <a href="https://www.nuget.org/packages/Authin.Api.Sdk">Authin.Api.Sdk</a> که در nuget.org وجود دارد را به پروژه خود اضافه کنید.</p>**
 
-**<p dir="rtl">2. <code>NuGet pacakge</code>های زیر را بر روی پروژه مقصد نصب کنید:</p>**
+**<p dir="rtl">و یا از دستور زیر برای نصب <code>NuGet pacakge</code>اقدام نمایید</p>**
 
 ```
-Install-Package Newtonsoft.Json -Version 10.0.1
-Install-Package Microsoft.IdentityModel.Tokens
-Install-Package System.IdentityModel.Tokens.Jwt
+Install-Package Authin.Api.Sdk
 ```
 <br/>
 <h2 dir="rtl">راهنمای استفاده از Authin.Api.Sdk در NET.</h2>
