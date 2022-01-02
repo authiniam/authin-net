@@ -43,12 +43,6 @@ namespace Authin.Api.Sdk.Request
                 return this;
             }
 
-            public Builder SetAccessToken(string accessToken)
-            {
-                _accessToken = accessToken;
-                return this;
-            }
-
             public Builder SetGrantType(string grantType)
             {
                 _grantType = grantType;
@@ -85,17 +79,11 @@ namespace Authin.Api.Sdk.Request
                 if (string.IsNullOrEmpty(_baseUrl))
                     throw new ArgumentException("BaseUrl is a required field");
 
-                if (string.IsNullOrEmpty(_accessToken))
-                    throw new ArgumentException("AccessToken is a required field");
-
                 if (string.IsNullOrEmpty(_grantType))
                     throw new ArgumentException("GrantType is a required field");
 
                 if (string.IsNullOrEmpty(_refreshToken))
                     throw new ArgumentException("RefreshToken is a required field");
-
-                if (_scopes == null)
-                    throw new ArgumentException("Scopes is a required field");
 
                 if (string.IsNullOrEmpty(_clientId))
                     throw new ArgumentException("ClientId is a required field");
@@ -106,7 +94,6 @@ namespace Authin.Api.Sdk.Request
                 return new RefreshTokenRequest
                 {
                     BaseUrl = _baseUrl,
-                    AccessToken = _accessToken,
                     GrantType = _grantType,
                     RefreshToken = _refreshToken,
                     Scopes = _scopes,
@@ -121,18 +108,20 @@ namespace Authin.Api.Sdk.Request
             var tokenEndpoint = new Uri(new Uri(BaseUrl), "/api/v1/oauth/token");
             var httpClient = new HttpClient();
 
+
             var tokenRequestBody = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("grant_type", GrantType),
                 new KeyValuePair<string, string>("refresh_token", RefreshToken),
-                new KeyValuePair<string, string>("scope", string.Join(" ", Scopes)),
                 new KeyValuePair<string, string>("client_id", ClientId),
                 new KeyValuePair<string, string>("client_secret", ClientSecret),
             };
 
+            if (Scopes != null)
+                tokenRequestBody.Add(new KeyValuePair<string, string>("scope", string.Join(" ", Scopes)));
+
             var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
             tokenRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            tokenRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
             tokenRequest.Content = new FormUrlEncodedContent(tokenRequestBody);
             var tokenResponse = await httpClient.SendAsync(tokenRequest);
             tokenResponse.EnsureSuccessStatusCode();
