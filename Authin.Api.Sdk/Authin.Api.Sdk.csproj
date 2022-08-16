@@ -87,6 +87,7 @@
     <Compile Include="Validation\TokenValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Authin.Api.Sdk.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
