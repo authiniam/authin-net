@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Authin.Api.Sdk</id>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
     <title>Authin Api SDK</title>
     <authors>Mohammad H. Mazinani</authors>
     <owners>Authin</owners>
