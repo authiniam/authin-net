@@ -46,6 +46,7 @@ public class PkceTokenRequest : IExecutable<TokenResponse>
             _code = code;
             return this;
         }
+
         public Builder SetRedirectUri(string redirectUri)
         {
             _redirectUri = redirectUri;

@@ -62,7 +62,7 @@ public class RefreshTokenRequest : IExecutable<TokenResponse>
 
         public Builder SetClientId(string clientId)
         {
-            _clientId= clientId;
+            _clientId = clientId;
             return this;
         }
 

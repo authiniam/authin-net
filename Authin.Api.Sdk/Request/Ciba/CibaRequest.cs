@@ -12,10 +12,15 @@ namespace Authin.Api.Sdk.Request.Ciba;
 public class CibaRequest : IExecutable<ICibaResponse>
 {
     #region Constructor
-    private CibaRequest() { }
+
+    private CibaRequest()
+    {
+    }
+
     #endregion
 
     #region Properties
+
     public string BaseUrl { get; private set; }
     public string ClientId { get; private set; }
     public string ClientSecret { get; private set; }
@@ -25,9 +30,11 @@ public class CibaRequest : IExecutable<ICibaResponse>
     public string AcrValues { get; private set; }
     public string LoginHint { get; private set; }
     public string BindingMessage { get; private set; }
+
     #endregion
 
     #region Public Methods
+
     public static Builder GetBuilder()
     {
         return new Builder();
@@ -90,17 +97,21 @@ public class CibaRequest : IExecutable<ICibaResponse>
         else
             return JsonConvert.DeserializeObject<CibaFailedResponse>(response);
     }
+
     #endregion
 
     #region Enums
+
     public enum Mode
     {
         Authentication,
         Transaction
     }
+
     #endregion
 
     #region Builder
+
     public class Builder
     {
         private string _baseUrl;
@@ -139,7 +150,7 @@ public class CibaRequest : IExecutable<ICibaResponse>
 
         public Builder AddScope(string scope)
         {
-            ((List<string>)_scopes).Add(scope);
+            ((List<string>) _scopes).Add(scope);
             return this;
         }
 
@@ -151,7 +162,7 @@ public class CibaRequest : IExecutable<ICibaResponse>
 
         public Builder AddAcrValue(string acr)
         {
-            ((List<string>)_acrValues).Add(acr);
+            ((List<string>) _acrValues).Add(acr);
             return this;
         }
 
@@ -206,10 +217,8 @@ public class CibaRequest : IExecutable<ICibaResponse>
                 LoginHint = _loginHint,
                 BindingMessage = _bindingMessage
             };
-
         }
-
-            
     }
+
     #endregion
 }

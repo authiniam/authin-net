@@ -62,7 +62,7 @@ public class AuthorizationCodeRequest : IExecutable<Uri>
 
         public Builder AddScopes(IList<string> scopes)
         {
-            ((List<string>)_scopes).AddRange(scopes);
+            ((List<string>) _scopes).AddRange(scopes);
             return this;
         }
 
@@ -80,7 +80,7 @@ public class AuthorizationCodeRequest : IExecutable<Uri>
 
         public Builder AddUserInfoClaims(IList<string> claims)
         {
-            ((List<string>)_userInfoClaims).AddRange(claims);
+            ((List<string>) _userInfoClaims).AddRange(claims);
             return this;
         }
 
@@ -92,7 +92,7 @@ public class AuthorizationCodeRequest : IExecutable<Uri>
 
         public Builder AddIdTokenClaims(IList<string> claims)
         {
-            ((List<string>)_idTokenClaims).AddRange(claims);
+            ((List<string>) _idTokenClaims).AddRange(claims);
             return this;
         }
 
@@ -113,15 +113,15 @@ public class AuthorizationCodeRequest : IExecutable<Uri>
 
             if (_scopes == null)
                 throw new ArgumentException("Scope is a required field");
-                
+
 
             var claims = new ClaimsModel
             {
                 UserInfo = new Dictionary<string, string>(),
                 IdToken = new Dictionary<string, string>()
             };
-            ((List<string>)_userInfoClaims).ForEach(c => claims.UserInfo.Add(c, null));
-            ((List<string>)_idTokenClaims).ForEach(c => claims.IdToken.Add(c, null));
+            ((List<string>) _userInfoClaims).ForEach(c => claims.UserInfo.Add(c, null));
+            ((List<string>) _idTokenClaims).ForEach(c => claims.IdToken.Add(c, null));
 
             return new AuthorizationCodeRequest
             {
@@ -129,7 +129,7 @@ public class AuthorizationCodeRequest : IExecutable<Uri>
                 ClientId = _clientId,
                 RedirectUri = _redirectUri,
                 ResponseType = _responseType,
-                Scopes= _scopes,
+                Scopes = _scopes,
                 State = _state,
                 Claims = claims
             };

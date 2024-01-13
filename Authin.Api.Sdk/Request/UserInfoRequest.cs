@@ -62,7 +62,6 @@ public class UserInfoRequest : IExecutable<UserInfoResponse>
                 Method = _method
             };
         }
-
     }
 
     public async Task<UserInfoResponse> Execute()
