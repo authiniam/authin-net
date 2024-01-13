@@ -110,11 +110,11 @@ public class TokenRequest : IExecutable<TokenResponse>
 
         var tokenRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("code", Code),
-            new KeyValuePair<string, string>("redirect_uri", RedirectUri),
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("client_secret", ClientSecret),
-            new KeyValuePair<string, string>("grant_type", GrantType)
+            new("code", Code),
+            new("redirect_uri", RedirectUri),
+            new("client_id", ClientId),
+            new("client_secret", ClientSecret),
+            new("grant_type", GrantType)
         };
 
         var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
@@ -133,11 +133,11 @@ public class TokenRequest : IExecutable<TokenResponse>
 
         var tokenRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("code", Code),
-            new KeyValuePair<string, string>("redirect_uri", RedirectUri),
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("client_secret", ClientSecret),
-            new KeyValuePair<string, string>("grant_type", GrantType)
+            new("code", Code),
+            new("redirect_uri", RedirectUri),
+            new("client_id", ClientId),
+            new("client_secret", ClientSecret),
+            new("grant_type", GrantType)
         };
 
         var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);

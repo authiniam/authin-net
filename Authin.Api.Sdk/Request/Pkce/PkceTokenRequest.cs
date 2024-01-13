@@ -110,11 +110,11 @@ public class PkceTokenRequest : IExecutable<TokenResponse>
 
         var tokenRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("code", Code),
-            new KeyValuePair<string, string>("redirect_uri", RedirectUri),
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("code_verifier", CodeVerifier),
-            new KeyValuePair<string, string>("grant_type", GrantType)
+            new("code", Code),
+            new("redirect_uri", RedirectUri),
+            new("client_id", ClientId),
+            new("code_verifier", CodeVerifier),
+            new("grant_type", GrantType)
         };
 
         var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
@@ -133,11 +133,11 @@ public class PkceTokenRequest : IExecutable<TokenResponse>
 
         var tokenRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("code", Code),
-            new KeyValuePair<string, string>("redirect_uri", RedirectUri),
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("code_verifier", CodeVerifier),
-            new KeyValuePair<string, string>("grant_type", GrantType)
+            new("code", Code),
+            new("redirect_uri", RedirectUri),
+            new("client_id", ClientId),
+            new("code_verifier", CodeVerifier),
+            new("grant_type", GrantType)
         };
 
         var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);

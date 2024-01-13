@@ -40,14 +40,14 @@ public class CibaRequest : IExecutable<ICibaResponse>
 
         var cibaRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("client_secret", ClientSecret),
-            new KeyValuePair<string, string>("grant_type", GrantType),
-            new KeyValuePair<string, string>("scope", Scope),
-            new KeyValuePair<string, string>("client_notification_token", ClientNotificationToken),
-            new KeyValuePair<string, string>("acr_values", AcrValues),
-            new KeyValuePair<string, string>("login_hint", LoginHint),
-            new KeyValuePair<string, string>("binding_message", BindingMessage)
+            new("client_id", ClientId),
+            new("client_secret", ClientSecret),
+            new("grant_type", GrantType),
+            new("scope", Scope),
+            new("client_notification_token", ClientNotificationToken),
+            new("acr_values", AcrValues),
+            new("login_hint", LoginHint),
+            new("binding_message", BindingMessage)
         };
 
         var cibaRequest = new HttpRequestMessage(HttpMethod.Post, cibaEndpoint);
@@ -69,14 +69,14 @@ public class CibaRequest : IExecutable<ICibaResponse>
 
         var cibaRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("client_secret", ClientSecret),
-            new KeyValuePair<string, string>("grant_type", GrantType),
-            new KeyValuePair<string, string>("scope", Scope),
-            new KeyValuePair<string, string>("client_notification_token", ClientNotificationToken),
-            new KeyValuePair<string, string>("acr_values", AcrValues),
-            new KeyValuePair<string, string>("login_hint", LoginHint),
-            new KeyValuePair<string, string>("binding_message", BindingMessage)
+            new("client_id", ClientId),
+            new("client_secret", ClientSecret),
+            new("grant_type", GrantType),
+            new("scope", Scope),
+            new("client_notification_token", ClientNotificationToken),
+            new("acr_values", AcrValues),
+            new("login_hint", LoginHint),
+            new("binding_message", BindingMessage)
         };
 
         var cibaRequest = new HttpRequestMessage(HttpMethod.Post, cibaEndpoint);

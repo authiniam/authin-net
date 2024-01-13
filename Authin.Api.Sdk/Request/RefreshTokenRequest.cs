@@ -110,10 +110,10 @@ public class RefreshTokenRequest : IExecutable<TokenResponse>
 
         var tokenRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("grant_type", GrantType),
-            new KeyValuePair<string, string>("refresh_token", RefreshToken),
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("client_secret", ClientSecret),
+            new("grant_type", GrantType),
+            new("refresh_token", RefreshToken),
+            new("client_id", ClientId),
+            new("client_secret", ClientSecret),
         };
 
         if (Scopes != null)
@@ -135,11 +135,11 @@ public class RefreshTokenRequest : IExecutable<TokenResponse>
 
         var tokenRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("grant_type", GrantType),
-            new KeyValuePair<string, string>("refresh_token", RefreshToken),
-            new KeyValuePair<string, string>("scope", string.Join(" ", Scopes)),
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("client_secret", ClientSecret),
+            new("grant_type", GrantType),
+            new("refresh_token", RefreshToken),
+            new("scope", string.Join(" ", Scopes)),
+            new("client_id", ClientId),
+            new("client_secret", ClientSecret),
         };
 
         var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);

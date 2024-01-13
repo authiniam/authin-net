@@ -89,10 +89,10 @@ public class CibaTokenRequest : IExecutable<TokenResponse>
 
         var tokenRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("client_secret", ClientSecret),
-            new KeyValuePair<string, string>("grant_type", GrantType),
-            new KeyValuePair<string, string>("auth_request_id", AuthRequestId)
+            new("client_id", ClientId),
+            new("client_secret", ClientSecret),
+            new("grant_type", GrantType),
+            new("auth_request_id", AuthRequestId)
         };
 
         var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
@@ -111,10 +111,10 @@ public class CibaTokenRequest : IExecutable<TokenResponse>
 
         var tokenRequestBody = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("client_id", ClientId),
-            new KeyValuePair<string, string>("client_secret", ClientSecret),
-            new KeyValuePair<string, string>("grant_type", GrantType),
-            new KeyValuePair<string, string>("auth_request_id", AuthRequestId)
+            new("client_id", ClientId),
+            new("client_secret", ClientSecret),
+            new("grant_type", GrantType),
+            new("auth_request_id", AuthRequestId)
         };
 
         var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
