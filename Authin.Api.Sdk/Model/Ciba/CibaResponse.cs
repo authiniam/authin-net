@@ -1,6 +1,5 @@
-﻿namespace Authin.Api.Sdk.Model.Ciba
+﻿namespace Authin.Api.Sdk.Model.Ciba;
+
+public interface ICibaResponse
 {
-    public interface ICibaResponse
-    {
-    }
 }

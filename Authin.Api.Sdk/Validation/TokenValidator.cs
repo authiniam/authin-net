@@ -6,12 +6,12 @@ using Authin.Api.Sdk.Model;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 
-namespace Authin.Api.Sdk.Validation
+namespace Authin.Api.Sdk.Validation;
+
+public class TokenValidator
 {
-    public class TokenValidator
+    public static JObject Validate(string token, Jwks jwks, string issuer, string audience)
     {
-        public static JObject Validate(string token, Jwks jwks, string issuer, string audience)
-        {
             var cryptoServiceProvider = new RSACryptoServiceProvider();
             cryptoServiceProvider.ImportParameters(new RSAParameters()
             {
@@ -41,13 +41,12 @@ namespace Authin.Api.Sdk.Validation
             return claims;
         }
 
-        private static byte[] FromBase64Url(string base64Url)
-        {
+    private static byte[] FromBase64Url(string base64Url)
+    {
             return Convert
                 .FromBase64String((base64Url.Length % 4 == 0 ? base64Url : base64Url + "====".Substring(base64Url.Length % 4))
                     .Replace("_", "/")
                     .Replace("-", "+"));
         }
 
-    }
 }

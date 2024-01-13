@@ -1,18 +1,12 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
-namespace Authin.Api.Sdk.Common
+namespace Authin.Api.Sdk.Common;
+
+public class CodeVerifier
 {
-    public class CodeVerifier
+    public static string NewCodeVerifier()
     {
-        public static string NewCodeVerifier()
-        {
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                var tokenData = new byte[128];
-                rng.GetBytes(tokenData);
-                return tokenData.ToBase64UrlSafeNoPadding();
-            }
-        }
+        var tokenData = RandomNumberGenerator.GetBytes(128);
+        return tokenData.ToBase64UrlSafeNoPadding();
     }
 }
