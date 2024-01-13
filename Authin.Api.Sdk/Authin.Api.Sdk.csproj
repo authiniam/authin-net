@@ -1,12 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <AssemblyName>Authin.Api.Sdk</AssemblyName>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFrameworks>net8.0;net6.0;net481</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.2.0"/>
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0"/>
+        <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.2" />
     </ItemGroup>
 </Project>

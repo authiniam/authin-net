@@ -8,8 +8,17 @@ using Newtonsoft.Json.Linq;
 
 namespace Authin.Api.Sdk.Validation;
 
-public class TokenValidator
+public static class TokenValidator
 {
+    private static readonly string[] EqualsPadding = GetEqualsPadding();
+
+    private static string[] GetEqualsPadding()
+    {
+        return Enumerable.Range(0, 4)
+            .Select(numberOfEqualSigns => new string('=', numberOfEqualSigns))
+            .ToArray();
+    }
+
     public static JObject Validate(string token, Jwks jwks, string issuer, string audience)
     {
         var cryptoServiceProvider = new RSACryptoServiceProvider();
@@ -42,9 +51,20 @@ public class TokenValidator
 
     private static byte[] FromBase64Url(string base64Url)
     {
-        return Convert
-            .FromBase64String((base64Url.Length % 4 == 0 ? base64Url : string.Concat(base64Url, "====".AsSpan(base64Url.Length % 4)))
+        var paddedBase64Url = PadBase64(base64Url);
+        return Convert.FromBase64String(paddedBase64Url
                 .Replace("_", "/")
                 .Replace("-", "+"));
+    }
+
+    private static string PadBase64(string base64)
+    {
+        if(base64.Length % 4 == 0)
+        {
+            return base64;
+        }
+        
+        var numberOfEqualsSigns = 4 - base64.Length % 4;
+        return string.Concat(base64, EqualsPadding[numberOfEqualsSigns]);
     }
 }
