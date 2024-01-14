@@ -1,11 +1,10 @@
-﻿    using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Authin.Api.Sdk.Request
+namespace Authin.Api.Sdk.Request;
+
+interface IExecutable<T>
 {
-    interface IExecutable<T>
-    {
-        Task<T> Execute();
+    Task<T> Execute();
 
-        T ExecuteSync();
-    }
+    T ExecuteSync();
 }
