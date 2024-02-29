@@ -9,12 +9,12 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/authiniam/authin-net/</PackageProjectUrl>
         <PackageId>Authin.Api.Sdk</PackageId>
-        <PackageReleaseNotes>Compatibility with net6.0 and net8.0</PackageReleaseNotes>
+        <PackageReleaseNotes>Compatibility with net48</PackageReleaseNotes>
         <RepositoryUrl>https://github.com/authiniam/authin-net</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright ©  2024</Copyright>
-        <Version>1.6.0.0</Version>
-        <FileVersion>1.6.0.0</FileVersion>
+        <Version>1.8.0.0</Version>
+        <FileVersion>1.8.0.0</FileVersion>
         <TargetFrameworks>net8.0;net6.0;net481;net48</TargetFrameworks>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
