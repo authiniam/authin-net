@@ -6,7 +6,7 @@ public class CodeVerifier
 {
     public static string NewCodeVerifier()
     {
-#if NET481
+#if NET481 || NET48
         using var rng = new RNGCryptoServiceProvider();
         var tokenData = new byte[128];
         rng.GetBytes(tokenData);
